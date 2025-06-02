@@ -7,6 +7,7 @@ const App = () => {
   const [lista, setLista] = useState([
     [0,'Rodrigo',0],
     [0,'Manola',0],
+    [0,'ps',0],
     
   ]);
   
@@ -17,25 +18,25 @@ const App = () => {
  }
   const Like = () => {
     const LikeList = [...lista]
-    LikeList[instruccion][2] +=0.01
+    LikeList[instruccion][2] =Math.max(0, +(LikeList[instruccion][2] + 0.01).toFixed(2))
     setLista(LikeList)
   }
   
   const [instruccion, setinstruccion] = useState(0)
   const chupame = () => {
-    if (lista>0){
+    if (instruccion >= lista.length -1){
       setinstruccion(0)
-    
     }
     else {
       setinstruccion(instruccion + 1)
    
     }
   }
+  console.log(instruccion)
   const resta = () => {
     const LikeList = [...lista]
     if (lista[instruccion][2] > 0){
-      LikeList[instruccion][2] -=0.01
+      LikeList[instruccion][2] =Math.max(0, +(LikeList[instruccion][2] - 0.01).toFixed(2))
       setLista(LikeList)
     }
     else if (lista[instruccion][2] <= 0)  {
@@ -44,7 +45,6 @@ const App = () => {
     }
   }  
   
- console.log(lista[instruccion][2])
 return(
   <div>
     <Title instruccio={lista[instruccion][1]}/>
